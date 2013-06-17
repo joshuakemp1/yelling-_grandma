@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+
   # GET /questions
   # GET /questions.json
   def index
@@ -68,6 +69,8 @@ class QuestionsController < ApplicationController
       end
     end
   end
+
+  
 
   # DELETE /questions/1
   # DELETE /questions/1.json
