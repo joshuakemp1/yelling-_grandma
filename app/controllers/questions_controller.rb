@@ -45,9 +45,8 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        #format.html { redirect_to pages_game_url }
-        format.html { redirect_to pages_game_url, notice: 'Question was successfully created.' }
-      #  format.json { render json: @question, status: :created, location: @question }
+        format.html { redirect_to pages_game_path, notice: 'Question was successfully created.' }
+        format.json { render json: @question, status: :created, location: @question }
       else
         format.html { render action: "new" }
         format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -72,6 +71,10 @@ class QuestionsController < ApplicationController
   end
 
   
+  def current_question
+    @current_question ||= Question.find(session[:question_id]) if session[:question_id]
+  end
+
 
   # DELETE /questions/1
   # DELETE /questions/1.json
