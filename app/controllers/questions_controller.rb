@@ -43,9 +43,11 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(params[:question])
 
+    
     respond_to do |format|
       if @question.save
-        format.html { redirect_to pages_game_path, notice: 'Question was successfully created.' }
+        current_question
+        format.html { redirect_to pages_game_path(:question_id => @question.id, :created_at => @question.created_at), notice: "Question #{@question.id} was successfully created." }
         format.json { render json: @question, status: :created, location: @question }
       else
         format.html { render action: "new" }
@@ -72,7 +74,7 @@ class QuestionsController < ApplicationController
 
   
   def current_question
-    @current_question ||= Question.find(session[:question_id]) if session[:question_id]
+    @current_question ||= Question.find(params[:id]) if params[:id]
   end
 
 

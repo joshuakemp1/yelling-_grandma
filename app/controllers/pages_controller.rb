@@ -1,12 +1,7 @@
 class PagesController < ApplicationController
   def game
-   
-
-   # @question ||= Question.find(session[:question_id]) if session[:question_id]
-
-    
-  end
-  def current_question
-     @current_question ||= Question.find(session[:question_id]) if session[:question_id]
+        
+        @my_time ||= params[:created_at] if params[:created_at]
+        @current_question ||= Question.find(params[:question_id]).name if params[:question_id]
   end
 end
