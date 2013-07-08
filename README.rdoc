@@ -1,1 +1,0 @@
-This is a Riddle Game made in Ruby using the Rails framework.
